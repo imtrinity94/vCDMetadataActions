@@ -1,0 +1,19 @@
+ var metadata = adminOrganization.getMetadata(); //All objects that support metadata return something, even if there are no metada yet
+
+    var vclMetadataStringValue = new VclMetadataStringValue();
+    vclMetadataStringValue.value = POSTAL_CODE;
+
+    var vclAbstractValueObject = new VclAbstractValueObject();
+    vclAbstractValueObject.setValue(vclMetadataStringValue);
+
+    var vclMetadataEntry = new VclMetadataEntry();
+    vclMetadataEntry.key = postalName;
+    vclMetadataEntry.typedValue = vclAbstractValueObject;
+
+    var visibility = "PRIVATE";
+    var vclMetadataDomainTag = new VclMetadataDomainTag();
+    vclMetadataDomainTag.visibility = visibility;
+    vclMetadataDomainTag.value = "SYSTEM";
+    vclMetadataEntry.domain = vclMetadataDomainTag;
+    metadata.updateTypedEntry(vclMetadataEntry);
+    System.debug("Organization metadata updated successfully");
